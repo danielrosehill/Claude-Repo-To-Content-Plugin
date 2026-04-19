@@ -1,0 +1,9 @@
+{
+  "name": "repo-to-docs",
+  "version": "1.0.0",
+  "description": "Convert GitHub repos into polished documents (PDF, blog post, white paper, internal doc) via Typst, with optional AI banner generation and multi-target publishing.",
+  "author": {"name": "Daniel Rosehill", "url": "https://github.com/danielrosehill"},
+  "repository": "https://github.com/danielrosehill/Repo-To-Docs-plugin",
+  "license": "MIT",
+  "keywords": ["docs", "pdf", "typst", "publishing", "repo-to-doc"]
+}
