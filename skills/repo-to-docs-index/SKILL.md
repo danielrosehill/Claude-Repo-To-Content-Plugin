@@ -24,7 +24,7 @@ Each configured `index_repos[]` entry must point at a directory that is:
 - Layout: entries at `YY/MM/DD/<slug>/` with at minimum a `meta.json`.
 - Has `build-index.sh` at root that rebuilds any derived indices/README from the `meta.json` files. Optional but recommended.
 
-Daniel's `danielrosehill/Public-Docs` is the canonical example.
+A repo of the form `<owner>/Public-Docs` (or any chronological doc archive) is the canonical example.
 
 ## Procedure
 
