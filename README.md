@@ -18,7 +18,7 @@ Convert a GitHub repository's content (README, docs/, planning/, diagrams, image
 ## Install
 
 ```bash
-claude plugins install repo-to-docs@danielrosehill
+claude plugins install repo-to-content@danielrosehill
 ```
 
 After installing, restart Claude Code so the skills are registered.
@@ -31,8 +31,8 @@ Example config:
 
 ```json
 {
-  "author_name": "Daniel Rosehill",
-  "author_url": "https://danielrosehill.com",
+  "author_name": "<Your Name>",
+  "author_url": "https://example.com",
   "default_license": "MIT",
   "generate_banner_if_missing": false,
   "typst_footer_defaults": {
@@ -44,7 +44,7 @@ Example config:
   "index_repos": [
     {
       "name": "public",
-      "path": "/home/daniel/repos/github/my-repos/Public-Docs",
+      "path": "~/repos/Public-Docs",
       "default": true,
       "gdrive_folder_id": null
     }
