@@ -23,15 +23,19 @@ Upload a single file to Google Drive via an MCP tool.
 1. Load config from `~/.config/repo-to-docs/config.json`.
 2. Resolve MCP server: prefer `mcp_server` arg, then `config.gdrive_mcp_server`, then `"gws-personal"`.
 3. Resolve `folder_id` via the order above. If prompting, show the user the available configured folders.
-4. Invoke the appropriate MCP upload tool. The expected tool name pattern is `<mcp_server>__upload_file` (common variants: `gws-personal`, `gws-dsrholdings`). Typical arguments:
-   - `file_path`: absolute path to the local file
-   - `folder_id`: Drive folder ID
+4. **Stage the file via MinIO.** The GWS MCP runs on `ubuntuvm` — it cannot read workstation paths like `/home/daniel/...`. Translate the local path to a presigned URL first:
+   ```bash
+   python3 ~/.claude/lib/minio-stage.py /absolute/local/path/file.pdf --expires 3600
+   # → {"url":"http://10.0.0.4:9100/mcp-staging/<uuid>/file.pdf?X-Amz-...",...}
+   ```
+5. Invoke the appropriate MCP upload tool (`mcp__jungle-personal__gws-personal__upload_file` or `mcp__jungle-dsrholdings__gws-dsrholdings__upload_file`) with:
+   - `sourceUrl`: the MinIO presigned URL from step 4 — **never** a raw workstation path.
+   - `parents`: `[<folder-id>]`
    - `name`: optional target filename
-5. On success, report:
-   - Drive file ID
-   - Drive web link (if returned)
-   - Target folder (ID + name if the MCP resolves it)
-6. On failure, surface the MCP error message and suggest verifying the MCP server is enabled (`claude mcp list`).
+6. On success, report Drive file ID, `webViewLink`, and target folder.
+7. On failure, surface the MCP error message and suggest verifying the MCP server is enabled (`claude mcp list`).
+
+**Do NOT** fall back to `rclone`, `scp`, `gcloud`, `gdrive`, direct Drive API `curl`, or any other workaround when the upload fails. MinIO staging + `sourceUrl` is the only supported route from this workstation. If staging fails, fix that — don't route around it. The `mcp-staging` bucket on `10.0.0.4:9100` self-cleans after 1 day.
 
 ## Notes
 
