@@ -23,19 +23,19 @@ Upload a single file to Google Drive via an MCP tool.
 1. Load config from `~/.config/repo-to-docs/config.json`.
 2. Resolve MCP server: prefer `mcp_server` arg, then `config.gdrive_mcp_server`, then `"gws-personal"`.
 3. Resolve `folder_id` via the order above. If prompting, show the user the available configured folders.
-4. **Stage the file via MinIO.** The GWS MCP runs on `ubuntuvm` — it cannot read workstation paths like `/home/daniel/...`. Translate the local path to a presigned URL first:
+4. **Stage the file via MinIO.** The GWS MCP runs on `residencehome` — it cannot read workstation paths like `/home/daniel/...`. Translate the local path to a presigned URL first:
    ```bash
    python3 ~/.claude/lib/minio-stage.py /absolute/local/path/file.pdf --expires 3600
-   # → {"url":"http://10.0.0.4:9100/mcp-staging/<uuid>/file.pdf?X-Amz-...",...}
+   # → {"url":"http://10.0.0.2:9100/mcp-staging/<uuid>/file.pdf?X-Amz-...",...}
    ```
-5. Invoke the appropriate MCP upload tool (`mcp__jungle-personal__gws-personal__upload_file` or `mcp__jungle-dsrholdings__gws-dsrholdings__upload_file`) with:
+5. Invoke the appropriate MCP upload tool (`mcp__gateway__google-workspace-personal__create_drive_file` or `mcp__gateway__google-workspace-dsrh__create_drive_file`) with:
    - `sourceUrl`: the MinIO presigned URL from step 4 — **never** a raw workstation path.
    - `parents`: `[<folder-id>]`
    - `name`: optional target filename
 6. On success, report Drive file ID, `webViewLink`, and target folder.
 7. On failure, surface the MCP error message and suggest verifying the MCP server is enabled (`claude mcp list`).
 
-**Do NOT** fall back to `rclone`, `scp`, `gcloud`, `gdrive`, direct Drive API `curl`, or any other workaround when the upload fails. MinIO staging + `sourceUrl` is the only supported route from this workstation. If staging fails, fix that — don't route around it. The `mcp-staging` bucket on `10.0.0.4:9100` self-cleans after 1 day.
+**Do NOT** fall back to `rclone`, `scp`, `gcloud`, `gdrive`, direct Drive API `curl`, or any other workaround when the upload fails. MinIO staging + `sourceUrl` is the only supported route from this workstation. If staging fails, fix that — don't route around it. The `mcp-staging` bucket on `10.0.0.2:9100` self-cleans after 1 day.
 
 ## Notes
 
