@@ -16,7 +16,7 @@ Generate a PDF from the outputs the user specifies (feel free to suggest obvious
   - `#AA697D` (rosewood)
   - `#5F4FA2` (purple)
 
-To override, read `repo-to-content` plugin config per `claude-rudder:plugin-data-storage` (key `pdf.palette`, an array of hex colors).
+To override, read `repo-to-content` plugin config per `rudder:plugin-data-storage` (key `pdf.palette`, an array of hex colors).
 
 ## Footer elements
 
