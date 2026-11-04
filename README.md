@@ -64,7 +64,7 @@ Skills chain via a shared manifest at `/tmp/repo-to-docs/<slug>/manifest.json`. 
 
 - [Typst](https://github.com/typst/typst) at `/usr/local/bin/typst` (or adjust the skill).
 - IBM Plex Sans font (falls back to system sans).
-- Optional: an MCP that exposes `text_to_image` for AI banners (the skills default to `nano-tech-diagrams`).
+- Optional: the gateway `fal-ai` image tools (`fal-ai__generate_image`) for AI banners.
 - Optional: a Google Workspace MCP (`gws-personal` or similar) for Drive uploads.
 
 ## License
