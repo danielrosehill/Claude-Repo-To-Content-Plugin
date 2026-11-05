@@ -43,7 +43,7 @@ Read `~/.config/repo-to-docs/config.json`. If missing, use these defaults:
 ### 3. Resolve banner
 - If `banner` argument is a path, use it.
 - Else if manifest has an image with `kind: banner`, use it.
-- Else if `generate_banner_if_missing` is true and not disabled by flag, call the gateway `fal-ai__generate_image` tool (via `mcp__gateway__toolbox__call_tool`) with:
+- Else if `generate_banner_if_missing` is true and not disabled by flag, call the fal REST queue API (`POST https://queue.fal.run/fal-ai/nano-banana-2`, header `Authorization: Key $FAL_KEY`, run under `with-secrets`; poll `status_url`, GET `response_url`, download `images[0].url`) with:
   - model: `fal-ai/nano-banana-2`, image_size: `landscape_16_9`
   - prompt: `"Technical documentation banner for '{title}' — {summary}. Clean minimalist style, suitable for PDF cover."`
   - save to `/tmp/repo-to-docs/<slug>/banner.png`
