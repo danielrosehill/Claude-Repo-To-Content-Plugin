@@ -23,8 +23,8 @@ Upload a single file to Google Drive via an MCP tool.
 1. Load config from `~/.config/repo-to-docs/config.json`.
 2. Resolve MCP server: prefer `mcp_server` arg, then `config.gdrive_mcp_server`, then `"gws-personal"`.
 3. Resolve `folder_id` via the order above. If prompting, show the user the available configured folders.
-4. **Stage the file.** The GWS MCP runs on `residencehome` — it cannot read workstation paths like `/home/daniel/...`. Stage the file with the `cloud-storage:stage-file` skill (Daniel's setup: `~/repos/github/ai-agents-and-prompts/ai-claude-plugins/Cloud-Storage-Plugin/scripts/stage.sh /local/path/to/file.pdf`; business destination: add `--bucket dsrholdings-transient`). It prints JSON `{store,bucket,key,url}`; `.url` is the presigned GET URL.
-5. Invoke the appropriate MCP upload tool (`mcp__gateway__google-workspace-personal__create_drive_file` or `mcp__gateway__google-workspace-dsrh__create_drive_file`) with:
+4. **Stage the file.** The GWS MCP runs on a remote server — it cannot read workstation paths like `/home/daniel/...`. Stage the file with the `cloud-storage:stage-file` skill (Daniel's setup: `~/repos/github/ai-agents-and-prompts/ai-claude-plugins/Cloud-Storage-Plugin/scripts/stage.sh /local/path/to/file.pdf`; business destination: add `--bucket dsrholdings-transient`). It prints JSON `{store,bucket,key,url}`; `.url` is the presigned GET URL.
+5. Invoke the appropriate MCP upload tool (the personal or business account's `create_drive_file` tool) with:
    - `fileUrl`: the presigned GET URL (`.url`) from step 4 — **never** a raw workstation path.
    - `folder_id`: `<folder-id>`
    - `file_name`: target filename

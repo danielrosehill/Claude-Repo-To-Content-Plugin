@@ -64,7 +64,7 @@ Skills chain via a shared manifest at `/tmp/repo-to-docs/<slug>/manifest.json`. 
 
 - [Typst](https://github.com/typst/typst) at `/usr/local/bin/typst` (or adjust the skill).
 - IBM Plex Sans font (falls back to system sans).
-- Optional: a `FAL_KEY` (fal REST API, via `with-secrets`) for AI banners.
+- Optional: a `FAL_KEY` (fal REST API; supply it from your own secrets manager) for AI banners.
 - Optional: a Google Workspace MCP (`gws-personal` or similar) for Drive uploads.
 
 ## License
