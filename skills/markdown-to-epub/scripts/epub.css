@@ -1,0 +1,15 @@
+/* Phone-first EPUB style: let the reader app control font and size; keep structure clear. */
+body { line-height: 1.5; margin: 0 0.4em; }
+h1 { font-size: 1.5em; margin: 1.2em 0 0.6em; page-break-before: always; }
+h2 { font-size: 1.25em; margin: 1.2em 0 0.4em; }
+h3 { font-size: 1.1em; margin: 1em 0 0.3em; }
+p { margin: 0 0 0.75em; text-indent: 0; }
+li { margin-bottom: 0.35em; }
+blockquote { margin: 0.8em 0 0.8em 0.8em; padding-left: 0.7em; border-left: 3px solid #999; font-style: italic; }
+table { border-collapse: collapse; width: 100%; font-size: 0.9em; margin: 0.8em 0; }
+th, td { border: 1px solid #aaa; padding: 0.3em 0.4em; vertical-align: top; text-align: left; }
+th { background: #eee; }
+code { font-size: 0.9em; word-break: break-all; }
+a { text-decoration: none; }
+.title { font-size: 1.8em; text-align: center; margin-top: 2em; }
+.subtitle, .date { text-align: center; }

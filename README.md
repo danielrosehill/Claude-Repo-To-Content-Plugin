@@ -12,6 +12,7 @@ Convert a GitHub repository's content (README, docs/, planning/, diagrams, image
 | `repo-to-blog-post` | Synthesize a markdown blog post (intro / body / conclusion) from the repo. |
 | `repo-to-white-paper` | Produce a structured long-form white paper PDF. |
 | `repo-to-docs-index` | Publish a generated file into a configured docs-index repo and push. |
+| `markdown-to-epub` | Turn a markdown document into a reflowable EPUB for phone and e-reader reading (MOBI is obsolete; Kindle takes EPUB). |
 | `repo-to-gdrive` | Upload a generated file to Google Drive via the configured GWS MCP. |
 | `repo-to-docs-configure` | Interactive setup for `~/.config/repo-to-docs/config.json`. |
 
