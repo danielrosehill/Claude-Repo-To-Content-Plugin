@@ -23,6 +23,9 @@ skills/markdown-to-epub/scripts/md2epub.sh <in.md> [out.epub] [--author NAME] [-
 - Needs `pandoc` (≥ 2.19). YAML front matter `title`, `subtitle`, `date`, `author` become book metadata.
 - One chapter per `#` heading (`--split-level=1`), table of contents to `##`.
 - HTML comments (`<!-- placeholders -->`) are stripped first.
+- Inline code (paths, IDs, slugs) is turned into italic body text (`scripts/inline-code-to-text.lua`). Reader apps
+  often ignore the book CSS for `<code>` and switch to monospace mid-sentence, which reads badly (reported 2026-11-23).
+  Fenced code blocks stay monospace.
 - `scripts/epub.css` sets structure only (headings, quotes, tables). It deliberately leaves font
   family and size to the reader app.
 - Images resolve relative to the input file's folder.
@@ -45,10 +48,14 @@ Upload by whatever route the user's setup uses. Name files `YYYY-MM-DD <Title>.e
 
 ## Reading on a phone (what to recommend)
 
-- **Android:** ReadEra. Free, no ads, reads EPUB, PDF and DOCX, has a good night mode, and
+- **Android, power user (the default recommendation):** Moon+ Reader Pro. It has the deepest settings (fonts,
+  margins, tap zones, overriding the book's CSS, sync of reading position via Drive), a built-in text-to-speech
+  read-aloud that uses the phone's TTS engine (works with the screen off), and it opens EPUB, PDF and more. Play
+  Store: https://play.google.com/store/apps/details?id=com.flyersoft.moonreaderp
+- **Android, simpler:** ReadEra. Free, no ads, reads EPUB, PDF and DOCX, has a good night mode, and
   picks up files from a local folder automatically. To keep a Drive folder in sync with the
   phone, add a one-way Drive-to-phone sync such as *Autosync for Google Drive* (MetaCtrl) or
-  FolderSync into the folder ReadEra watches. Moon+ Reader is the power-user alternative.
+  FolderSync into the folder ReadEra watches. 
 - **iPhone:** Apple Books. Open the EPUB from the Drive app with Share → Books.
 - **Kindle app or device:** Send to Kindle (email, app or web) accepts EPUB directly.
 - **Google Play Books** syncs across devices, but files have to be uploaded to it by hand,

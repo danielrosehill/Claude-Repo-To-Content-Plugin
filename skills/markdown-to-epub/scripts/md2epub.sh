@@ -15,6 +15,6 @@ while [[ $# -gt 0 ]]; do case "$1" in
 tmp="$(mktemp --suffix=.md)"; trap 'rm -f "$tmp"' EXIT
 perl -0pe 's/<!--.*?-->//gs' "$in" > "$tmp"
 pandoc "$tmp" -f markdown -t epub3 -o "$out" \
-  --css "$here/epub.css" --toc --toc-depth=2 --split-level=1 \
+  --css "$here/epub.css" --lua-filter "$here/inline-code-to-text.lua" --toc --toc-depth=2 --split-level=1 \
   --metadata lang=en-GB --resource-path="$(dirname "$in")" "${args[@]}"
 echo "$out"
